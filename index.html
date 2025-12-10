@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogetur Viagens e Turismo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- RESET E VARIÁVEIS --- */
+        :root {
+            --primary-color: #008fa1;
+            /* Um azul turquesa mais moderno que o #88efff */
+            --secondary-color: #2c3e50;
+            /* Azul escuro elegante */
+            --accent-color: #e74c3c;
+            /* Para destaques/promoções */
+            --bg-light: #f8f9fa;
+            --text-color: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.85rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            margin-left: 15px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- MOBILE MENU BUTTON --- */
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .search-box {
+            background: var(--white);
+            padding: 10px;
+            border-radius: 50px;
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-box input {
+            border: none;
+            padding: 10px 20px;
+            flex: 1;
+            outline: none;
+            font-size: 1rem;
+            border-radius: 50px;
+        }
+
+        .search-box button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .search-box button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* --- SECTIONS --- */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+
+        .section-title h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .section-title span {
+            color: var(--primary-color);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- GRID DE PACOTES --- */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .card-text {
+            color: #666;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .btn-card {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        .newsletter-form button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                /* Esconde menu no mobile */
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-top">
+                <i class="fa fa-phone"></i> (83) 9305-6906 | <i class="fa fa-envelope"></i> rogetur@rogetur.com.br
+            </div>
+            <div class="social-icons">
+                <a href="http://instagram.com/rogetur" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/rogetur" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container navbar">
+            <div>
+                <img src="https://rogetur.com.br/images/logo.png" alt="" srcset="">
+            </div>
+
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/pacote/tipo?id=1&id=2">Pacotes</a></li>
+                    <li><a href="/pacote/tipo?id=8">Roteiro Jovem</a></li>
+                    <li><a href="/pacote/tipo?id=3&id=4">Cruzeiros</a></li>
+                    <li><a href="/pacote/tipo?id=5&id=6">Grupos</a></li>
+                    <li><a href="/foto">Fotos</a></li>
+                    <li><a href="/contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content container">
+            <h2>Qual seu próximo destino?</h2>
+            <form action="/Pacote/Buscar" method="post" class="search-box">
+                <input type="text" name="texto" placeholder="Procure por um destino ou lugar...">
+                <button type="submit"><i class="fas fa-search"></i> Buscar</button>
+            </form>
+        </div>
+    </section>
+
+    <main class="container">
+
+        <div class="section-title">
+            <h3>Destaques <span>Internacionais</span></h3>
+        </div>
+
+        <div class="packages-grid">
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=500&q=60"
+                    alt="França" class="card-img">
+                <div class="card-body">
+                    <h4 class="card-title">Grupo França e Itália</h4>
+                    <p class="card-text">Maio 2026 - Sucesso de vendas</p>
+                    <a href="/pacote-detalhe.html" class="btn-card">Ver detalhes <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=500&q=60"
+                    alt="Buenos Aires" class="card-img">
+                <div class="card-body">
+                    <h4 class="card-title">Buenos Aires</h4>
+                    <p class="card-text">Pacote aéreo + hotel a partir de R$</p>
+                    <a href="#" class="btn-card">Ver detalhes <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://nascentetour.com.br/wp-content/uploads/2016/11/Leste-Europeu-%E2%80%93-Praga-Viena-e-Budapeste-20-01-2020.jpg"
+                    alt="Leste Europeu" class="card-img">
+                <div class="card-body">
+                    <h4 class="card-title">Grupo Leste Europeu</h4>
+                    <p class="card-text">Junho 2026 - Sucesso de vendas</p>
+                    <a href="#" class="btn-card">Ver detalhes <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://dicaschile.com.br/wp-content/uploads/sites/13/2017/06/quantos-dias-ficar-santiago-1024x585.jpg"
+                    alt="Santiago" class="card-img">
+                <div class="card-body">
+                    <h4 class="card-title">Santiago do Chile</h4>
+                    <p class="card-text">Aéreo + Hotel</p>
+                    <a href="#" class="btn-card">Ver detalhes <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=500&q=60"
+                    alt="Turquia" class="card-img">
+                <div class="card-body">
+                    <h4 class="card-title">Turquia</h4>
+                    <p class="card-text">Saídas mensais</p>
+                    <a href="#" class="btn-card">Ver detalhes <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://img.freepik.com/fotos-gratis/vista-aerea-da-famosa-ponte-do-porto-portugal_268835-3550.jpg?semt=ais_hybrid&w=740&q=80"
+                    alt="Portugal" class="card-img">
+                <div class="card-body">
+                    <h4 class="card-title">Portugal</h4>
+                    <p class="card-text">Reveillon 25/26 - Mega Promoção</p>
+                    <a href="#" class="btn-card">Ver detalhes <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+
+        <div class="section-title">
+            <h3>Destaques <span>Nacionais</span></h3>
+        </div>
+
+        <div class="packages-grid">
+            <article class="card">
+                <img src="https://portal-de-viagem.s3.sa-east-1.amazonaws.com/blog_post/3VmcUq2WCRTaDhQ4wZ8yRnfa1pp57DxWRufwuej5.png"
+                    alt="Gramado" class="card-img">
+                <div class="card-body">
+                    <h4 class="card-title">Natal Luz Gramado</h4>
+                    <p class="card-text">Out/2025 a Jan/2026 - Mega promoção</p>
+                    <a href="#" class="btn-card">Ver detalhes <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://www.viagensecaminhos.com/wp-content/uploads/2010/08/santuario-nacional-nossa-senhora-aparecida.jpg"
+                    alt="Aparecida" class="card-img">
+                <div class="card-body">
+                    <h4 class="card-title">Aparecida do Norte</h4>
+                    <p class="card-text">Grupo Rogetur - 19 a 24/03/26</p>
+                    <a href="#" class="btn-card">Ver detalhes <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://www.msccruzeiros.com.br/-/media/feature/destination/port-cruise-search/cruise-to.jpg?bc=transparent&as=1&mh=730&mw=1420&hash=439A759BC2081A8A2EF4ABBDDB182F0B"
+                    alt="Cruzeiros" class="card-img">
+                <div class="card-body">
+                    <h4 class="card-title">Cruzeiros</h4>
+                    <p class="card-text">Temporada América do Sul 25/26</p>
+                    <a href="#" class="btn-card">Ver detalhes <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://www.melhoresdestinos.com.br/wp-content/uploads/2019/07/passagens-aereas-foz-do-iguacu-capa2019-05.jpg"
+                    alt="Foz" class="card-img">
+                <div class="card-body">
+                    <h4 class="card-title">Foz do Iguaçu</h4>
+                    <p class="card-text">Mega Promoção</p>
+                    <a href="#" class="btn-card">Ver detalhes <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+
+                <div class="footer-col">
+                    <h3>Nosso Endereço</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone-alt"></i> (83) 9305-6906</p>
+                        <p><i class="fas fa-envelope"></i> rogetur@rogetur.com.br</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Av. Manoel Morais, 435<br>Manaíra - João Pessoa - PB
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Sobre a Rogetur</a></li>
+                        <li><a href="/pacote/tipo?id=1&id=2">Pacotes</a></li>
+                        <li><a href="/contato">Fale Conosco</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p style="margin-bottom: 15px; font-size: 0.9rem;">Fique atualizado com nossas promoções assinando
+                        nossa newsletter.</p>
+                    <form action="/Home/NewsLetter" method="post" class="newsletter-form">
+                        <input type="email" name="email" placeholder="Seu email">
+                        <button type="submit">OK</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Rogetur. Todos os direitos reservados. Design modernizado por Ziontek.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script simples para o menu mobile
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
